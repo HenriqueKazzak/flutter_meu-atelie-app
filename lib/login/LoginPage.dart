@@ -50,15 +50,35 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: 16),
             TextButton(
-              onPressed: () async {
-                // Call the signInWithEmailAndPassword method
+              onPressed: () {
+                //forgot password screen
               },
-              child: Text('Sign in'),
+              child: const Text('Forgot Password',),
             ),
-            TextButton(
-              onPressed: _signInWithGoogle,
-              child: Text('Sign in with Google'),
-            )
+            Container(
+                height: 50,
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                child: ElevatedButton(
+                  child: const Text('Login'),
+                  onPressed: () {
+                  },
+                )
+            ),
+            Row(
+              children: <Widget>[
+                const Text('Does not have account?'),
+                TextButton(
+                  child: const Text(
+                    'Sign in',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {
+                    //signup screen
+                  },
+                )
+              ],
+              mainAxisAlignment: MainAxisAlignment.center,
+            ),
           ],
         ),
       ),

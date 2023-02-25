@@ -1,9 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'LoginPage.dart';
-import 'firebase_options.dart';
+import 'config/firebase_options.dart';
+import 'login/LoginPage.dart';
 
 
 void main() async {
@@ -21,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Atelie',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blue
       ),
       home: LoginPage(),
     );
