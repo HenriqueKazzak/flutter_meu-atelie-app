@@ -19,7 +19,7 @@ class DefaultFirebaseOptions {
     if (kIsWeb) {
       throw UnsupportedError(
         'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
+            'you can reconfigure this by running the FlutterFire CLI again.',
       );
     }
     switch (defaultTargetPlatform) {
@@ -30,17 +30,17 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+              'you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+              'you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+              'you can reconfigure this by running the FlutterFire CLI again.',
         );
       default:
         throw UnsupportedError(
@@ -50,20 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAZ9iFLsCWfa95kk1hcD8w7ZpHLnCsXCXo',
-    appId: '1:813923424569:android:c521886142795bfef970e8',
-    messagingSenderId: '813923424569',
-    projectId: 'my-atelie-app',
-    storageBucket: 'my-atelie-app.appspot.com',
+    apiKey: String.fromEnvironment("API_KEY_ANDR"),
+    appId: '1:252353061976:android:ac363e77a5216ae52a962d',
+    messagingSenderId: '252353061976',
+    projectId: 'meuatelie-fd17b',
+    storageBucket: 'meuatelie-fd17b.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAWghq-hiK-XIqaT0xn0kMkULdxln61wrk',
-    appId: '1:813923424569:ios:7167523bcc38ba5cf970e8',
-    messagingSenderId: '813923424569',
-    projectId: 'my-atelie-app',
-    storageBucket: 'my-atelie-app.appspot.com',
-    iosClientId: '813923424569-1g6q16g85gsi1cn1dp54e50i8nsnudqh.apps.googleusercontent.com',
+    apiKey: String.fromEnvironment("API_KEY_IOS"),
+    appId: '1:252353061976:ios:f88a9a0eeee0c1ec2a962d',
+    messagingSenderId: '252353061976',
+    projectId: 'meuatelie-fd17b',
+    storageBucket: 'meuatelie-fd17b.appspot.com',
+    iosClientId: '252353061976-an2qkl1bruushr12titb13c0rjocebj4.apps.googleusercontent.com',
     iosBundleId: 'com.kazzak.meuAtelie',
   );
 }
