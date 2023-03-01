@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meu_atelie/register/bloc/RegisterBloc.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -8,16 +9,18 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  var registerBloc = RegisterBloc();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center (
         child: Column(
-          children: const <Widget> [
+          children: <Widget> [
             TextField(
-              decoration: InputDecoration(
-                hintText: "Nome: "
+              decoration: const InputDecoration(
+                hintText: "Nome: ",
               ),
+              controller: registerBloc.emailController,
             )
           ],
         )

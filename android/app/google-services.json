@@ -29,6 +29,13 @@
             {
               "client_id": "252353061976-r5qph1hp9kbvfragsa1vjrgnpnv1cs6f.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "252353061976-an2qkl1bruushr12titb13c0rjocebj4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kazzak.meuAtelie"
+              }
             }
           ]
         }
