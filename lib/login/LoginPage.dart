@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:meu_atelie/register/RegisterPage.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -26,59 +28,97 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _emailController = TextEditingController();
-    final TextEditingController _passwordController = TextEditingController();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TextField(
-              controller: _emailController,
+            const TextField(
               decoration: InputDecoration(
                 hintText: 'Email',
               ),
             ),
-            SizedBox(height: 8),
-            TextField(
-              controller: _passwordController,
+            const SizedBox(height: 8),
+            const TextField(
               decoration: InputDecoration(
                 hintText: 'Password',
               ),
               obscureText: true,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextButton(
               onPressed: () {
-                //forgot password screen
+
               },
-              child: const Text('Forgot Password',),
+              child: const Text(
+                'Forgot Password',
+              ),
             ),
-            Container(
-                height: 50,
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                child: ElevatedButton(
-                  child: const Text('Login'),
-                  onPressed: () {
-                  },
-                )
+            TextButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(242, 114, 137,100)),
+              ),
+              onPressed: () {
+              },
+              child: const Text(style: TextStyle(color: Colors.white),
+                  "Login"
+              )
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Text('Does not have account?'),
+                const Text('Ainda não possui conta?'),
                 TextButton(
                   child: const Text(
-                    'Sign in',
-                    style: TextStyle(fontSize: 20),
+                    'Criar conta',
+                    style: TextStyle(fontSize: 15),
                   ),
                   onPressed: () {
-                    //signup screen
+                    Navigator.push(context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                            const RegisterPage()
+                        )
+                    );
                   },
                 )
               ],
-              mainAxisAlignment: MainAxisAlignment.center,
             ),
+            Row(
+              children: const <Widget>[
+                Expanded(
+                  child: Divider(
+                    color: Colors.grey,
+                    thickness: 1,
+                    height: 32,
+                    indent: 16,
+                    endIndent: 16,
+                  ),
+                ),
+                Text(
+                  'Ou',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Expanded(
+                  child: Divider(
+                    color: Colors.grey,
+                    thickness: 1,
+                    height: 32,
+                    indent: 16,
+                    endIndent: 16,
+                  ),
+                )
+              ],
+            ),
+            SignInButton(
+              Buttons.Google,
+              text: "Sign up with Google",
+              onPressed: _signInWithGoogle,
+            )
           ],
         ),
       ),
