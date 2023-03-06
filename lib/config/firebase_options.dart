@@ -48,7 +48,7 @@ class DefaultFirebaseOptions {
         );
     }
   }
-
+  //String.fromEnvironment("API_KEY_ANDR")
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: String.fromEnvironment("API_KEY_ANDR"),
     appId: '1:252353061976:android:ac363e77a5216ae52a962d',
