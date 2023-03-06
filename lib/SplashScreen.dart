@@ -28,6 +28,9 @@ class _SplashScreenState extends State<SplashScreen> {
         MaterialPageRoute(builder: (_) => HomePage(user: user)),
       );*/
       print('HOMEPAGE');
+      // Navigator.of(context).pushReplacement(
+      //   MaterialPageRoute(builder: (_) => LoginPage()),
+      // );
     } else {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) => LoginPage()),

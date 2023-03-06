@@ -1,9 +1,9 @@
 class Servico {
   DateTime _dataEntrega;
-  String _estado;
+  String _status;
 
 
-  Servico(this._dataEntrega, this._estado);
+  Servico(this._dataEntrega, this._status);
 
   DateTime get dataEntrega => _dataEntrega;
 
@@ -11,9 +11,9 @@ class Servico {
     _dataEntrega = value;
   }
 
-  String get estado => _estado;
+  String get estado => _status;
 
   set estado(String value) {
-    _estado = value;
+    _status = value;
   }
 }

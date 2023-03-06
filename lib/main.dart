@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:meu_atelie/SplashScreen.dart';
+import 'package:meu_atelie/login/LoginPage.dart';
 import 'config/firebase_options.dart';
 
 
@@ -28,7 +29,7 @@ class MeuAtelie extends StatelessWidget {
           secondary: Colors.white,)
         ),
       ),
-      home: SplashScreen(),
+      home: LoginPage(),
     );
   }
 }
