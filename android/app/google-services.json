@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "252353061976",
+    "project_id": "meuatelie-fd17b",
+    "storage_bucket": "meuatelie-fd17b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252353061976:android:ac363e77a5216ae52a962d",
+        "android_client_info": {
+          "package_name": "com.kazzak.meu_atelie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "252353061976-r5qph1hp9kbvfragsa1vjrgnpnv1cs6f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5-MOhVMp6FN8dN9pkfw8nqGuEr0ZnSLc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "252353061976-r5qph1hp9kbvfragsa1vjrgnpnv1cs6f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "252353061976-an2qkl1bruushr12titb13c0rjocebj4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kazzak.meuAtelie"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

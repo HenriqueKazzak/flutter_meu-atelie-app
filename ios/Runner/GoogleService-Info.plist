@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>813923424569-1g6q16g85gsi1cn1dp54e50i8nsnudqh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.813923424569-1g6q16g85gsi1cn1dp54e50i8nsnudqh</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAWghq-hiK-XIqaT0xn0kMkULdxln61wrk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>813923424569</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.kazzak.meuAtelie</string>
+	<key>PROJECT_ID</key>
+	<string>my-atelie-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>my-atelie-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:813923424569:ios:7167523bcc38ba5cf970e8</string>
+</dict>
+</plist>
