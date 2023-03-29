@@ -8,28 +8,7 @@ class UserBloc{
   final FirebaseService _firebaseService = FirebaseService();
   TextEditingController _nomeController = TextEditingController();
   TextEditingController _senhaController = TextEditingController();
-  TextEditingController _confirmarSenhaController = TextEditingController();
-  TextEditingController _senhaAntigaController = TextEditingController();
   TextEditingController _telefoneController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-
-  TextEditingController get confirmarSenhaController => _confirmarSenhaController;
-
-  set confirmarSenhaController(TextEditingController value) {
-    _confirmarSenhaController = value;
-  }
-
-  TextEditingController get senhaAntigaController => _senhaAntigaController;
-
-  set senhaAntigaController(TextEditingController value) {
-    _senhaAntigaController = value;
-  }
-
-  TextEditingController get emailController => _emailController;
-
-  set emailController(TextEditingController value) {
-    _emailController = value;
-  }
 
   TextEditingController get nomeController => _nomeController;
 
@@ -53,8 +32,8 @@ class UserBloc{
     return await _firebaseService.updateUser(_nomeController.text, _telefoneController.text);
   }
 
-  Future<bool> updatePassword() async {
-    return await _firebaseService.updatePassword(_emailController.text,_senhaAntigaController.text ,_senhaController.text);
+  Future<User> updatePassword() async {
+    return await _firebaseService.updatePassword(_senhaController.text);
   }
 
   void deleteUser() {
