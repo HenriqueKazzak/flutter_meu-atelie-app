@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'login/LoginPage.dart';
+=======
+import 'dart:developer';
+
+import 'package:flutter/material.dart';
+import 'package:meu_atelie/utils/FirebaseService.dart';
+>>>>>>> dev
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -10,6 +17,7 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
+<<<<<<< HEAD
 class _SplashScreenState extends State<SplashScreen> {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
@@ -38,6 +46,27 @@ class _SplashScreenState extends State<SplashScreen> {
     }
   }
 
+=======
+class _SplashScreenState extends State<SplashScreen>{
+
+
+  final FirebaseService _firebaseService = FirebaseService();
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    //Logger initialization
+    log("SplashScreen: didChangeDependencies");
+    _firebaseService.isSignedIn().then((value) {
+      log("SplashScreen: isSignedIn: $value");
+      if (value) {
+        Navigator.pushNamed(context, '/home');
+      } else {
+        Navigator.pushNamed(context, '/login');
+      }
+    });
+  }
+>>>>>>> dev
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
