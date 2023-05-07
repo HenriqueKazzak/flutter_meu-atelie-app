@@ -28,10 +28,7 @@ apply plugin: 'com.google.gms.google-services'
 
 
 android {
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
@@ -45,13 +42,8 @@ android {
         applicationId "com.kazzak.meu_atelie"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-<<<<<<< HEAD
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
-=======
         minSdkVersion 21
         targetSdkVersion 33
->>>>>>> dev
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

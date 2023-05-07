@@ -82,13 +82,15 @@ class FirebaseService {
     }
   }
 
-  Future<User> updatePassword(String password) async{
+  Future<bool> updatePassword(String email, String oldPassword, String password) async{
     try {
-      User user =  await _auth.currentUser!;
+      User user =  _auth.currentUser!;
+      user.reauthenticateWithCredential(EmailAuthProvider.credential(email: email, password: oldPassword));
       user.updatePassword(password);
-      return user;
+      return true;
     } catch (e) {
-      return _auth.currentUser!;
+      log(e.toString());
+      return false;
     }
   }
 

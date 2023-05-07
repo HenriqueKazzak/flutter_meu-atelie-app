@@ -1,19 +1,7 @@
 {
   "file_generated_by": "FlutterFire CLI",
   "purpose": "FirebaseAppID & ProjectID for this Firebase app in this directory",
-<<<<<<< HEAD
   "GOOGLE_APP_ID": "1:252353061976:ios:f88a9a0eeee0c1ec2a962d",
   "FIREBASE_PROJECT_ID": "meuatelie-fd17b",
   "GCM_SENDER_ID": "252353061976"
-=======
-<<<<<<< HEAD
-  "GOOGLE_APP_ID": "1:252353061976:ios:f88a9a0eeee0c1ec2a962d",
-  "FIREBASE_PROJECT_ID": "meuatelie-fd17b",
-  "GCM_SENDER_ID": "252353061976"
-=======
-  "GOOGLE_APP_ID": "1:813923424569:ios:7167523bcc38ba5cf970e8",
-  "FIREBASE_PROJECT_ID": "my-atelie-app",
-  "GCM_SENDER_ID": "813923424569"
->>>>>>> fc418b6 (first commit)
->>>>>>> dev
 }
