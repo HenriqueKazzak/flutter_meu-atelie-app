@@ -15,14 +15,14 @@ class _ListagemPedidosState extends State<ListagemPedidos> {
       appBar: AppBar(
         title: Text("Pedidos"),
       ),
-      body: FutureBuilder(
-        future: getServico,
-        builder: (context, servico){
-          return ListView.builder(
-              itemBuilder: itemBuilder)
-        },
-      ),
-    )
+      // body: FutureBuilder(
+      //   future: getServico,
+      //   builder: (context, servico){
+      //     return ListView.builder(
+      //         itemBuilder: itemBuilder)
+      //   },
+      // ),
+    );
   }
 
 }
