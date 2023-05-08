@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'bloc/RegisterCostureiraBloc.dart';
 
-class RegisterCostureiraPage extends StatefulWidget {
-  const RegisterCostureiraPage({Key? key}) : super(key: key);
+class CadastrarCostureiraPage extends StatefulWidget {
+  const CadastrarCostureiraPage({Key? key}) : super(key: key);
 
   @override
-  State<RegisterCostureiraPage> createState() => _RegisterCostureiraPageState();
+  State<CadastrarCostureiraPage> createState() => _CadastrarCostureiraPageState();
 }
 
-class _RegisterCostureiraPageState extends State<RegisterCostureiraPage> {
+class _CadastrarCostureiraPageState extends State<CadastrarCostureiraPage> {
   var registerBloc = RegisterBloc();
 
   //Reload da tela

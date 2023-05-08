@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-class NewJobPage extends StatelessWidget {
-  const NewJobPage({Key? key}) : super(key: key);
+class MainServicoPage extends StatelessWidget {
+  const MainServicoPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    //return two option of new job "Ajuste" or "Novo" in  big square buttons left and right on click navigate to ajuste or novo page
 
     return Scaffold(
       appBar: AppBar(

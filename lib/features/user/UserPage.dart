@@ -40,10 +40,22 @@ class _UserPageState extends State<UserPage> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text('Alterar senha'),
+            contentPadding: EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 0),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                TextField(
+                InkWell(
+                  onTap: () {
+                    // TODO: Implement photo selection
+                  },
+                  child: CircleAvatar(
+                    radius: 50.0,
+                    backgroundColor: Colors.grey[300],
+                    child: Icon(Icons.person, size: 60.0, color: Colors.grey[600]),
+                  ),
+                ),
+                SizedBox(height: 20.0),
+                TextFormField(
                   controller: _userBloc.senhaAntigaController,
                   obscureText: !showPassword,
                   decoration: InputDecoration(
@@ -60,7 +72,8 @@ class _UserPageState extends State<UserPage> {
                     ),
                   ),
                 ),
-                TextField(
+                SizedBox(height: 20.0),
+                TextFormField(
                   controller: _userBloc.senhaController,
                   obscureText: !showPassword,
                   decoration: InputDecoration(
@@ -77,7 +90,8 @@ class _UserPageState extends State<UserPage> {
                     ),
                   ),
                 ),
-                TextField(
+                SizedBox(height: 20.0),
+                TextFormField(
                   controller: _userBloc.confirmarSenhaController,
                   obscureText: !showPassword,
                   decoration: InputDecoration(
@@ -99,7 +113,6 @@ class _UserPageState extends State<UserPage> {
                       _confirmPassword();
                     });
                   },
-
                 ),
               ],
             ),
@@ -110,7 +123,7 @@ class _UserPageState extends State<UserPage> {
                   Navigator.of(context).pop();
                 },
               ),
-              TextButton(
+              ElevatedButton(
                 child: Text('Salvar'),
                 onPressed: () {
                   if(_confirmPassword()) {
@@ -128,8 +141,9 @@ class _UserPageState extends State<UserPage> {
               ),
             ],
           );
-        });
-    }
+        }
+    );
+  }
   void sucessoDialog(BuildContext context) {
     showDialog(
         context: context,
