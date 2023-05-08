@@ -8,6 +8,7 @@ import 'package:meu_atelie/utils/FirebaseService.dart';
 
 class UserPage extends StatefulWidget {
   final Costureira costureira;
+
   const UserPage({Key? key, required this.costureira}) : super(key: key);
 
   @override
@@ -30,8 +31,10 @@ class _UserPageState extends State<UserPage> {
   }
 
   bool _confirmPassword() {
-    return _userBloc.senhaController.text == _userBloc.confirmarSenhaController.text;
+    return _userBloc.senhaController.text ==
+        _userBloc.confirmarSenhaController.text;
   }
+
   //modal para mudar senha, senha atual nova e confirmar nova senha
   void _showModalChangePassword(BuildContext context) {
     bool showPassword = false;
@@ -51,7 +54,8 @@ class _UserPageState extends State<UserPage> {
                   child: CircleAvatar(
                     radius: 50.0,
                     backgroundColor: Colors.grey[300],
-                    child: Icon(Icons.person, size: 60.0, color: Colors.grey[600]),
+                    child: Icon(
+                        Icons.person, size: 60.0, color: Colors.grey[600]),
                   ),
                 ),
                 SizedBox(height: 20.0),
@@ -95,7 +99,9 @@ class _UserPageState extends State<UserPage> {
                   controller: _userBloc.confirmarSenhaController,
                   obscureText: !showPassword,
                   decoration: InputDecoration(
-                    errorText: _confirmPassword() ? null : 'Senhas não conferem',
+                    errorText: _confirmPassword()
+                        ? null
+                        : 'Senhas não conferem',
                     labelText: 'Confirmar nova senha',
                     suffixIcon: IconButton(
                       icon: Icon(
@@ -126,15 +132,17 @@ class _UserPageState extends State<UserPage> {
               ElevatedButton(
                 child: Text('Salvar'),
                 onPressed: () {
-                  if(_confirmPassword()) {
-                    _userBloc.updatePassword().then((value) => {
+                  if (_confirmPassword()) {
+                    _userBloc.updatePassword().then((value) =>
+                    {
                       if(value) {
                         Navigator.of(context).pop(),
                         sucessoDialog(context)
-                      } else {
-                        Navigator.of(context).pop(),
-                        erroDialog(context)
-                      }
+                      } else
+                        {
+                          Navigator.of(context).pop(),
+                          erroDialog(context)
+                        }
                     });
                   }
                 },
@@ -144,6 +152,7 @@ class _UserPageState extends State<UserPage> {
         }
     );
   }
+
   void sucessoDialog(BuildContext context) {
     showDialog(
         context: context,
@@ -155,13 +164,16 @@ class _UserPageState extends State<UserPage> {
               TextButton(
                 child: Text('Ok'),
                 onPressed: () {
-                  Navigator.of(context).pop();
-                },
+                  setState(() {
+                    Navigator.of(context).pop();
+                  });
+                      },
               ),
             ],
           );
         });
   }
+
   erroDialog(BuildContext context) {
     showDialog(
         context: context,
@@ -180,7 +192,6 @@ class _UserPageState extends State<UserPage> {
           );
         });
   }
-
 
 
   void _showImageSourceOptions(BuildContext context) {
@@ -275,7 +286,8 @@ class _UserPageState extends State<UserPage> {
               readOnly: true,
               controller: _userBloc.emailController,
             ),
-            ElevatedButton(onPressed: () => _showModalChangePassword(context), child: Text('Alterar senha')),
+            ElevatedButton(onPressed: () => _showModalChangePassword(context),
+                child: Text('Alterar senha')),
             ElevatedButton(
               onPressed: () {
                 _userBloc.updateUser();

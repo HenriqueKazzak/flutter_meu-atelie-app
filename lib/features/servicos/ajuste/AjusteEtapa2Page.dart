@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:meu_atelie/models/Cliente.dart';
-import 'package:meu_atelie/models/Servico.dart';
 import 'package:meu_atelie/utils/FirebaseService.dart';
 
 class AjusteEtapa1Page extends StatefulWidget {
@@ -14,15 +13,13 @@ class AjusteEtapa1Page extends StatefulWidget {
 class _AjusteEtapa1PageState extends State<AjusteEtapa1Page> {
   final FirebaseService _firebaseService = FirebaseService();
 
-
   String _getClienteTelefone() {
     return "+55 (11) 98765-4321";
   }
 
 
   final _formKey = GlobalKey<FormState>();
-  final _controllerNome = TextEditingController();
-  final _controllerTelefone = TextEditingController();
+  final _controller = TextEditingController();
   List<dynamic> _clientes = [];
 
   Future<void> _pesquisarClientes(String value) async {
@@ -31,7 +28,7 @@ class _AjusteEtapa1PageState extends State<AjusteEtapa1Page> {
         .where('nome', isGreaterThanOrEqualTo: value)
         .where('nome', isLessThan: value + 'z')
         .get();
-    final clientes = snapshot.docs.map((doc) => doc.data()).toList();
+    final clientes = snapshot.docs.map((doc) => doc.data()['nome']).toList();
     setState(() {
       _clientes = clientes;
     });
@@ -52,19 +49,18 @@ class _AjusteEtapa1PageState extends State<AjusteEtapa1Page> {
             children: [
               Text('Pesquisar cliente:'),
               TextFormField(
-                controller: _controllerNome,
+                controller: _controller,
                 onChanged: _pesquisarClientes,
                 decoration: InputDecoration(
                   suffixIcon: IconButton(
                     icon: Icon(Icons.clear),
                     onPressed: () {
-                      _controllerNome.clear();
+                      _controller.clear();
                       setState(() {
                         _clientes = [];
                       });
                     },
                   ),
-                  prefixIcon: Icon(Icons.search)
                 ),
               ),
               if (_clientes.isNotEmpty)
@@ -75,16 +71,9 @@ class _AjusteEtapa1PageState extends State<AjusteEtapa1Page> {
                     itemBuilder: (context, index) {
                       final cliente = _clientes[index];
                       return ListTile(
-                        title: Row(
-                          children: [
-                            Icon(Icons.person),
-                            Text(cliente['nome'])
-                          ],
-                        ),
-                        subtitle: Text(cliente['telefone']),
+                        title: Text(cliente),
                         onTap: () {
-                          _controllerNome.text = cliente['nome'];
-                          _controllerTelefone.text = cliente['telefone'];
+                          _controller.text = cliente;
                           setState(() {
                             _clientes = [];
                           });
@@ -98,12 +87,10 @@ class _AjusteEtapa1PageState extends State<AjusteEtapa1Page> {
                 children:  [
                   Icon(Icons.phone),
                   Expanded(child: TextField(
-                    controller: _controllerTelefone,
-                    readOnly: true,
-                  )
-
-                  ),
-
+                    decoration: InputDecoration(
+                      hintText: _getClienteTelefone(),
+                    ),
+                  )),
                 ],
               ),
               SizedBox(height: 20),
