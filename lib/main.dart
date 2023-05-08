@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:meu_atelie/SplashScreen.dart';
-
 import 'package:meu_atelie/features/homepage/HomePage.dart';
 import 'package:meu_atelie/features/login/LoginPage.dart';
-
 import 'package:meu_atelie/utils/FirebaseService.dart';
-%
+
 import 'features/cadastro/cadastrocliente/CadastrarClientePage.dart';
 import 'features/cadastro/cadastrocostureira/CadastrarCostureiraPage.dart';
 import 'features/servicos/MainServicoPage.dart';
-import 'features/servicos/ajuste/AjustePage.dart';
+import 'features/servicos/ajuste/AjusteEtapa1Page.dart';
 import 'features/servicos/novo/NovoPage.dart';
 
 void main() async {
@@ -56,7 +54,7 @@ class MeuAtelie extends StatelessWidget {
         '/login': (context) => LoginPage(),
         '/newjob': (context) => const MainServicoPage(),
         '/novo': (context) => const NovoPage(),
-        '/ajuste': (context) => const AjustePage(),
+        '/ajuste1': (context) => const AjusteEtapa1Page(),
         '/register_costureira': (context) => const CadastrarCostureiraPage(),
         '/register_cliente': (context) => const CadastrarClientePage()
       },
