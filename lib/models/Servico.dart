@@ -1,19 +1,25 @@
 class Servico {
-  DateTime _dataEntrega;
-  String _status;
+  late DateTime dataEntrega;
+  late String status;
+
+  Servico({required this.dataEntrega, required this.status});
 
 
-  Servico(this._dataEntrega, this._status);
-
-  DateTime get dataEntrega => _dataEntrega;
-
-  set dataEntrega(DateTime value) {
-    _dataEntrega = value;
+  Servico.fromJson(Map<String, dynamic> json) {
+    dataEntrega = json['dataEntrega']!;
+    status = json['status'];
   }
 
-  String get estado => _status;
-
-  set estado(String value) {
-    _status = value;
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['dataEntrega'] = this.dataEntrega;
+    data['status'] = this.status;
+    return data;
   }
+
+  @override
+  String toString() {
+    return 'Servico{dataEntrega: $dataEntrega, status: $status}';
+  }
+
 }

@@ -13,25 +13,28 @@ class AjusteEtapa1Page extends StatefulWidget {
 class _AjusteEtapa1PageState extends State<AjusteEtapa1Page> {
   final FirebaseService _firebaseService = FirebaseService();
 
-  String _getClienteTelefone() {
-    return "+55 (11) 98765-4321";
-  }
-
-
   final _formKey = GlobalKey<FormState>();
   final _controller = TextEditingController();
-  List<dynamic> _clientes = [];
+  final _controllerEmail = TextEditingController();
+  List<QueryDocumentSnapshot> _clientes = [];
 
   Future<void> _pesquisarClientes(String value) async {
     final snapshot = await FirebaseFirestore.instance
         .collection('clientes')
         .where('nome', isGreaterThanOrEqualTo: value)
-        .where('nome', isLessThan: value + 'z')
+        .where('nome', isLessThan: '${value}z')
         .get();
-    final clientes = snapshot.docs.map((doc) => doc.data()['nome']).toList();
+    final clientes = snapshot.docs;
     setState(() {
       _clientes = clientes;
     });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _controllerEmail.dispose();
+    super.dispose();
   }
 
   @override
@@ -46,6 +49,7 @@ class _AjusteEtapa1PageState extends State<AjusteEtapa1Page> {
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('Pesquisar cliente:'),
               TextFormField(
@@ -69,11 +73,11 @@ class _AjusteEtapa1PageState extends State<AjusteEtapa1Page> {
                   child: ListView.builder(
                     itemCount: _clientes.length,
                     itemBuilder: (context, index) {
-                      final cliente = _clientes[index];
                       return ListTile(
-                        title: Text(cliente),
+                        title: Text(_clientes[index].get('nome')),
                         onTap: () {
-                          _controller.text = cliente;
+                          _controller.text = _clientes[index].get('nome');
+                          _controllerEmail.text = _clientes[index].get('email');
                           setState(() {
                             _clientes = [];
                           });
@@ -84,13 +88,16 @@ class _AjusteEtapa1PageState extends State<AjusteEtapa1Page> {
                 ),
               SizedBox(height: 20),
               Row(
-                children:  [
-                  Icon(Icons.phone),
-                  Expanded(child: TextField(
-                    decoration: InputDecoration(
-                      hintText: _getClienteTelefone(),
+                children: [
+                  Expanded(
+                    child: TextField(
+                      decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.email),
+                        hintText: 'E-mail',
+                      ),
+                      controller: _controllerEmail,
                     ),
-                  )),
+                  ),
                 ],
               ),
               SizedBox(height: 20),
@@ -127,4 +134,3 @@ class _AjusteEtapa1PageState extends State<AjusteEtapa1Page> {
     );
   }
 }
-

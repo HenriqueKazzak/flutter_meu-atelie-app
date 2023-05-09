@@ -14,24 +14,24 @@ class AjusteEtapa1Page extends StatefulWidget {
 class _AjusteEtapa1PageState extends State<AjusteEtapa1Page> {
   final FirebaseService _firebaseService = FirebaseService();
 
-
-  String _getClienteTelefone() {
-    return "+55 (11) 98765-4321";
-  }
-
-
   final _formKey = GlobalKey<FormState>();
   final _controllerNome = TextEditingController();
-  final _controllerTelefone = TextEditingController();
+  final _controllerEmail = TextEditingController();
   List<dynamic> _clientes = [];
 
   Future<void> _pesquisarClientes(String value) async {
     final snapshot = await FirebaseFirestore.instance
         .collection('clientes')
         .where('nome', isGreaterThanOrEqualTo: value)
-        .where('nome', isLessThan: value + 'z')
+        .where('nome', isLessThan: '${value}z')
         .get();
-    final clientes = snapshot.docs.map((doc) => doc.data()).toList();
+
+    final clientes = snapshot.docs.map((doc) {
+      var data = doc.data();
+      data['id'] = doc.id;
+      return data;
+    }).toList();
+
     setState(() {
       _clientes = clientes;
     });
@@ -41,7 +41,7 @@ class _AjusteEtapa1PageState extends State<AjusteEtapa1Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Etapa 1/5 - Selecionar cliente'),
+        title: const Text('Etapa 1/5 - Selecionar cliente'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -49,42 +49,47 @@ class _AjusteEtapa1PageState extends State<AjusteEtapa1Page> {
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Pesquisar cliente:'),
+              const Text('Pesquisar cliente:'),
               TextFormField(
                 controller: _controllerNome,
                 onChanged: _pesquisarClientes,
                 decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    icon: Icon(Icons.clear),
-                    onPressed: () {
-                      _controllerNome.clear();
-                      setState(() {
-                        _clientes = [];
-                      });
-                    },
-                  ),
-                  prefixIcon: Icon(Icons.search)
-                ),
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.clear),
+                      onPressed: () {
+                        _controllerNome.clear();
+                        _controllerEmail.clear();
+                        setState(() {
+                          _clientes = [];
+                        });
+                      },
+                    ),
+                    prefixIcon: const Icon(Icons.search)),
               ),
               if (_clientes.isNotEmpty)
-                Container(
-                  height: 100,
+                Expanded(
                   child: ListView.builder(
                     itemCount: _clientes.length,
                     itemBuilder: (context, index) {
-                      final cliente = _clientes[index];
+                      final cliente = Cliente.fromJson(_clientes[index]);
                       return ListTile(
                         title: Row(
                           children: [
-                            Icon(Icons.person),
-                            Text(cliente['nome'])
+                            const Icon(Icons.person),
+                            Text(cliente.nome),
                           ],
                         ),
-                        subtitle: Text(cliente['telefone']),
+                        subtitle: Row(
+                          children: [
+                            const Icon(Icons.email),
+                            Text(cliente.email),
+                          ],
+                        ),
                         onTap: () {
-                          _controllerNome.text = cliente['nome'];
-                          _controllerTelefone.text = cliente['telefone'];
+                          _controllerNome.text = cliente.nome;
+                          _controllerEmail.text = cliente.email;
                           setState(() {
                             _clientes = [];
                           });
@@ -93,27 +98,28 @@ class _AjusteEtapa1PageState extends State<AjusteEtapa1Page> {
                     },
                   ),
                 ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
-                children:  [
-                  Icon(Icons.phone),
-                  Expanded(child: TextField(
-                    controller: _controllerTelefone,
+                children: [
+                  Expanded(
+                      child: TextField(
+                    controller: _controllerEmail,
+                    decoration: const InputDecoration(
+                      labelText: 'Email',
+                      prefixIcon: Icon(Icons.email),
+                    ),
                     readOnly: true,
-                  )
-
-                  ),
-
+                  )),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/novo_cliente');
                 },
-                child: Text('Novo cliente'),
+                child: const Text('Novo cliente'),
               ),
-              Spacer(),
+              const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -121,7 +127,7 @@ class _AjusteEtapa1PageState extends State<AjusteEtapa1Page> {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text('Voltar'),
+                    child: const Text('Voltar'),
                   ),
                   ElevatedButton(
                     onPressed: () {
@@ -129,7 +135,7 @@ class _AjusteEtapa1PageState extends State<AjusteEtapa1Page> {
                         Navigator.pushNamed(context, '/etapa2');
                       }
                     },
-                    child: Text('Próxima etapa'),
+                    child: const Text('Próxima etapa'),
                   ),
                 ],
               ),
@@ -140,4 +146,3 @@ class _AjusteEtapa1PageState extends State<AjusteEtapa1Page> {
     );
   }
 }
-

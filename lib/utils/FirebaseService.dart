@@ -98,4 +98,12 @@ class FirebaseService {
     User user = _auth.currentUser!;
     user.delete();
   }
+
+  Stream<QuerySnapshot<Object?>> getOrdersStream() {
+    return _firestore.collection('pedidos').snapshots();
+  }
+
+  Stream<QuerySnapshot<Object?>> getNextOrdersStream(QueryDocumentSnapshot<Object?> last) {
+    return _firestore.collection('pedidos').startAfterDocument(last).snapshots();
+  }
 }
