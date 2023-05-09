@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "252353061976-r5qph1hp9kbvfragsa1vjrgnpnv1cs6f.apps.googleusercontent.com",
+          "client_id": "252353061976-t0p2234pvrp2nmqrr03c9vvm693i5d40.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kazzak.meu_atelie",
+            "certificate_hash": "e873a28abc7e54dfca69c254483d7204417a2ebf"
+          }
+        },
+        {
+          "client_id": "252353061976-idda2rdh6ec0nm158obju5ad3b6klpgg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "252353061976-r5qph1hp9kbvfragsa1vjrgnpnv1cs6f.apps.googleusercontent.com",
+              "client_id": "252353061976-idda2rdh6ec0nm158obju5ad3b6klpgg.apps.googleusercontent.com",
               "client_type": 3
             },
             {

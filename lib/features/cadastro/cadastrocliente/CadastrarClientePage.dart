@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'bloc/RegisterClienteBloc.dart';
 
-class RegisterClientePage extends StatefulWidget {
-  const RegisterClientePage({Key? key}) : super(key: key);
+class CadastrarClientePage extends StatefulWidget {
+  const CadastrarClientePage({Key? key}) : super(key: key);
 
   @override
-  State<RegisterClientePage> createState() => _RegisterClientePageState();
+  State<CadastrarClientePage> createState() => _CadastrarClientePageState();
 }
 
-class _RegisterClientePageState extends State<RegisterClientePage> {
+class _CadastrarClientePageState extends State<CadastrarClientePage> {
   var clienteBloc = RegisterClienteBloc();
   @override
   Widget build(BuildContext context) {
