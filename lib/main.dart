@@ -8,7 +8,7 @@ import 'features/cadastro/cadastrocliente/CadastrarClientePage.dart';
 import 'features/cadastro/cadastrocostureira/CadastrarCostureiraPage.dart';
 import 'features/servicos/MainServicoPage.dart';
 import 'features/servicos/ajuste/AjusteEtapa1Page.dart';
-import 'features/servicos/novo/NovoPage.dart';
+import 'features/servicos/novo/SobMedidaEtapa1Page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,7 +53,7 @@ class MeuAtelie extends StatelessWidget {
         '/home': (context) => const HomePage(),
         '/login': (context) => LoginPage(),
         '/newjob': (context) => const MainServicoPage(),
-        '/novo': (context) => const NovoPage(),
+        '/novo1': (context) => const SobMedidaEtapa1Page(),
         '/ajuste1': (context) => const AjusteEtapa1Page(),
         '/register_costureira': (context) => const CadastrarCostureiraPage(),
         '/register_cliente': (context) => const CadastrarClientePage()
