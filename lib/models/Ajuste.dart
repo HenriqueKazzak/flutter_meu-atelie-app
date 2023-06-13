@@ -1,11 +1,22 @@
+import 'ItemAjuste.dart';
+
 class Ajuste{
-  int _valorTotal;
+  double valorTotal = 0.0;
+  String nome = '';
+  String descricao = '';
+  List<ItemAjuste> ajustes = <ItemAjuste>[];
 
-  Ajuste(this._valorTotal);
+  @override
+  String toString() {
+    return 'Ajuste{valorTotal: $valorTotal, nome: $nome, descricao: $descricao, ajustes: $ajustes}';
+  }
 
-  int get valorTotal => _valorTotal;
-
-  set valorTotal(int value) {
-    _valorTotal = value;
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['valorTotal'] = this.valorTotal;
+    data['nome'] = this.nome;
+    data['descricao'] = this.descricao;
+    data['ajustes'] = this.ajustes.map((v) => v.toJson()).toList();
+    return data;
   }
 }

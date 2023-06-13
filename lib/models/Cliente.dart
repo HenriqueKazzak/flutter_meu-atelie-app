@@ -4,9 +4,9 @@ import 'package:meu_atelie/utils/FirebaseService.dart';
 class Cliente extends AbstractModel {
   late String _id;
   late String _nome;
-  late String _telefone;
+  late String _email;
 
-  Cliente(this._nome, this._telefone);
+  Cliente(this._nome, this._email);
 
   String get nome => _nome;
 
@@ -14,10 +14,10 @@ class Cliente extends AbstractModel {
     _nome = value;
   }
 
-  String get telefone => _telefone;
+  String get email => _email;
 
-  set telefone(String value) {
-    _telefone = value;
+  set email(String value) {
+    _email = value;
   }
 
   String get id => _id;
@@ -26,16 +26,20 @@ class Cliente extends AbstractModel {
     _id = value;
   }
 
-  @override
   Map<String, dynamic> toJson() {
-    return {
-      'nome': _nome,
-      'telefone': _telefone,
-    };
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['nome'] = this._nome;
+    data['email'] = this._email;
+    return data;
   }
 
   Cliente.fromJson(Map<String, dynamic> json) {
+    _id = json['id'];
     _nome = json['nome'];
-    _telefone = json['telefone'];
+    _email = json['email'];
+  }
+  @override
+  String toString() {
+    return 'Cliente{_id: $_id, _nome: $_nome, _email: $_email}';
   }
 }

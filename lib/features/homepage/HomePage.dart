@@ -35,7 +35,6 @@ class _HomePageState extends State<HomePage> {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
         // Carregar mais pedidos quando o usuário chegar ao final da lista
-
       }
     });
   }

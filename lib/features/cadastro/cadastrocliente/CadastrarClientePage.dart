@@ -29,13 +29,14 @@ class _CadastrarClientePageState extends State<CadastrarClientePage> {
           ),
           TextField(
             decoration: InputDecoration(
-              hintText: "Telefone",
+              hintText: "Email",
             ),
             controller: clienteBloc.TelefoneCliente,
           ),
           TextButton(
             onPressed: () {
               clienteBloc.cadastrarCliente();
+              Navigator.pop(context);
             },
             child: const Text("Cadastrar"),
           ),

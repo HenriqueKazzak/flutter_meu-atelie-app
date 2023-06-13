@@ -1,18 +1,21 @@
 class ItemAjuste{
-  String _nome;
-  int _custo;
+  String nome = '';
+  double custo = 0.0;
+  bool selecionado =false;
 
-  ItemAjuste(this._nome, this._custo);
+  ItemAjuste(this.nome, this.custo);
 
-  String get nome => _nome;
-
-  set nome(String value) {
-    _nome = value;
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['nome'] = this.nome;
+    data['custo'] = this.custo;
+    data['selecionado'] = this.selecionado;
+    return data;
   }
 
-  int get custo => _custo;
-
-  set custo(int value) {
-    _custo = value;
+  @override
+  String toString() {
+    return 'ItemAjuste{nome: $nome, custo: $custo, selecionado: $selecionado}';
   }
+
 }
