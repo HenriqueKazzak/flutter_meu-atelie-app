@@ -5,14 +5,14 @@ import 'package:meu_atelie/models/Cliente.dart';
 import 'package:meu_atelie/models/Servico.dart';
 import 'package:meu_atelie/utils/FirebaseService.dart';
 
-class AjusteEtapa1Page extends StatefulWidget {
-  const AjusteEtapa1Page({Key? key}) : super(key: key);
+class SobMedidaEtapa1Page extends StatefulWidget {
+  const SobMedidaEtapa1Page({Key? key}) : super(key: key);
 
   @override
-  State<AjusteEtapa1Page> createState() => _AjusteEtapa1PageState();
+  State<SobMedidaEtapa1Page> createState() => _SobMedidaEtapa1State();
 }
 
-class _AjusteEtapa1PageState extends State<AjusteEtapa1Page> {
+class _SobMedidaEtapa1State extends State<SobMedidaEtapa1Page> {
   final FirebaseService _firebaseService = FirebaseService();
 
   final _formKey = GlobalKey<FormState>();

@@ -26,18 +26,20 @@ class Cliente extends AbstractModel {
     _id = value;
   }
 
-  @override
   Map<String, dynamic> toJson() {
-    return {
-
-      'nome': _nome,
-      'email': _email,
-    };
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['nome'] = this._nome;
+    data['email'] = this._email;
+    return data;
   }
 
   Cliente.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
     _nome = json['nome'];
     _email = json['email'];
+  }
+  @override
+  String toString() {
+    return 'Cliente{_id: $_id, _nome: $_nome, _email: $_email}';
   }
 }

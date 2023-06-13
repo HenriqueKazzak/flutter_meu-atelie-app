@@ -64,7 +64,7 @@ class MainServicoPage extends StatelessWidget {
                     padding: EdgeInsets.all(10),
                     child: ElevatedButton.icon(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/novo');
+                        Navigator.pushNamed(context, '/sobmedida1');
                       },
                       icon: Icon(Icons.style),
                       label: Text("Novo"),
