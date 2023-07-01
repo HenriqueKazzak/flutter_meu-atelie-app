@@ -15,4 +15,12 @@ class Medida {
   set comprimento(int value) {
     _comprimento = value;
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['nome'] = this.nome;
+    data['comprimento'] = this.comprimento;
+    return data;
+  }
+
 }

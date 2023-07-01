@@ -34,7 +34,6 @@ class Cliente extends AbstractModel {
   }
 
   Cliente.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
     _nome = json['nome'];
     _email = json['email'];
   }

@@ -6,6 +6,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meu_atelie/config/firebase_options.dart';
+import 'package:meu_atelie/models/PedidoAjuste.dart';
+import 'package:meu_atelie/models/PedidoSobMedida.dart';
+import 'package:meu_atelie/models/Servico.dart';
 
 import '../models/AbstractModel.dart';
 
@@ -20,17 +23,17 @@ class FirebaseService {
   late final FirebaseAuth _auth = FirebaseAuth.instance;
   late final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<User> getCurrentUser() async{
+  Future<User> getCurrentUser() async {
     return _auth.currentUser!;
-
   }
 
   Future<UserCredential> signIn(String email, String password) async {
-    return await _auth.signInWithEmailAndPassword(email: email, password: password);
-
+    return await _auth.signInWithEmailAndPassword(
+        email: email, password: password);
   }
 
-  Future<UserCredential> signUp(String email, String password,String name, String phone) async {
+  Future<UserCredential> signUp(String email, String password, String name,
+      String phone) async {
     UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
     User? user = userCredential.user;
@@ -66,14 +69,14 @@ class FirebaseService {
     await GoogleSignIn().signOut();
   }
 
-  Future<DocumentReference<Map<String, dynamic>>> save<T extends AbstractModel>(
-      String collection, T model) {
+  Future<DocumentReference<Map<String, dynamic>>> save(String collection,
+      model) {
     return _firestore.collection(collection).add(model.toJson());
   }
 
-  Future<User> updateUser(String nome, String telefone) async{
+  Future<User> updateUser(String nome, String telefone) async {
     try {
-      User user =  _auth.currentUser!;
+      User user = _auth.currentUser!;
       user.updateDisplayName(nome);
       user.updatePhoneNumber(telefone as PhoneAuthCredential);
       return user;
@@ -82,10 +85,12 @@ class FirebaseService {
     }
   }
 
-  Future<bool> updatePassword(String email, String oldPassword, String password) async{
+  Future<bool> updatePassword(String email, String oldPassword,
+      String password) async {
     try {
-      User user =  _auth.currentUser!;
-      user.reauthenticateWithCredential(EmailAuthProvider.credential(email: email, password: oldPassword));
+      User user = _auth.currentUser!;
+      user.reauthenticateWithCredential(
+          EmailAuthProvider.credential(email: email, password: oldPassword));
       user.updatePassword(password);
       return true;
     } catch (e) {
@@ -99,11 +104,18 @@ class FirebaseService {
     user.delete();
   }
 
-  Stream<QuerySnapshot<Object?>> getOrdersStream() {
-    return _firestore.collection('pedidos').snapshots();
+  Stream<QuerySnapshot<Object?>> getOrdersStream(int limit) {
+    return _firestore.collection('pedidos').snapshots().take(limit);
   }
 
-  Stream<QuerySnapshot<Object?>> getNextOrdersStream(QueryDocumentSnapshot<Object?> last) {
-    return _firestore.collection('pedidos').startAfterDocument(last).snapshots();
+  Stream<QuerySnapshot<Object?>> getNextOrdersStream(
+      QueryDocumentSnapshot<Object?> last) {
+    return _firestore.collection('pedidos').startAfterDocument(last)
+        .snapshots()
+        .take(10);
+  }
+
+  deleteOrder(String orderId) {
+    _firestore.collection('pedidos').doc(orderId).delete();
   }
 }

@@ -1,18 +1,19 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:meu_atelie/features/servicos/ajuste/AjusteEtapa2Page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meu_atelie/models/Cliente.dart';
 import 'package:meu_atelie/models/Servico.dart';
 import 'package:meu_atelie/utils/FirebaseService.dart';
+
+import 'SobMedidaEtapa2Page.dart';
 
 class SobMedidaEtapa1Page extends StatefulWidget {
   const SobMedidaEtapa1Page({Key? key}) : super(key: key);
 
   @override
-  State<SobMedidaEtapa1Page> createState() => _SobMedidaEtapa1State();
+  State<SobMedidaEtapa1Page> createState() => _SobMedidaEtapa1PageState();
 }
 
-class _SobMedidaEtapa1State extends State<SobMedidaEtapa1Page> {
+class _SobMedidaEtapa1PageState extends State<SobMedidaEtapa1Page> {
   final FirebaseService _firebaseService = FirebaseService();
 
   final _formKey = GlobalKey<FormState>();
@@ -136,7 +137,7 @@ class _SobMedidaEtapa1State extends State<SobMedidaEtapa1Page> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => AjusteEtapa2Page(
+                                builder: (context) => SobMedidaEtapa2Page(
                                     cliente: Cliente(_controllerNome.text,
                                         _controllerEmail.text))));
                       }

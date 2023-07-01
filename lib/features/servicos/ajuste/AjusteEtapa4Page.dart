@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:meu_atelie/utils/FirebaseService.dart';
 
 import '../../../models/Servico.dart';
 
@@ -15,6 +16,7 @@ class AjusteEtapa4Page extends StatefulWidget {
 
 class _AjusteEtapa4PageState extends State<AjusteEtapa4Page> {
   late DateTime _selectedDate;
+  final FirebaseService _fireBaseService = FirebaseService();
 
   @override
   void initState() {
@@ -99,6 +101,7 @@ class _AjusteEtapa4PageState extends State<AjusteEtapa4Page> {
                   ElevatedButton(
                     onPressed: () {
                       log(widget.servico.toString());
+                      _fireBaseService.save('pedidos', widget.servico);
                       Navigator.pushNamed(context, '/home');
 
                     },

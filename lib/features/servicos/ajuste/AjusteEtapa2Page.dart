@@ -6,7 +6,7 @@ import 'package:meu_atelie/models/Servico.dart';
 
 import '../../../models/AbstractPedido.dart';
 import '../../../models/PedidoAjuste.dart';
-import 'AjusteEtape3Page.dart';
+import 'AjusteEtapa3Page.dart';
 
 class AjusteEtapa2Page extends StatefulWidget {
   final Cliente cliente;
