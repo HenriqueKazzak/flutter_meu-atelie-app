@@ -126,6 +126,7 @@ class _SobMedidaEtapa2PageState extends State<SobMedidaEtapa2Page> {
                   p.imagens = _imagemSobMedida;
                 }
                 Servico servico = Servico(
+                  tipoPedido: "SobMedida",
                   cliente: widget.cliente,
                   pedido: p
                 );

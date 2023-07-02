@@ -4,15 +4,17 @@ import 'AbstractPedido.dart';
 import 'Cliente.dart';
 
 class Servico {
+  late String tipoPedido;
   late Cliente cliente;
   late DateTime dataEntrega;
   String status = 'Aguardando';
   late AbstractPedido pedido;
 
-  Servico({required this.cliente, required this.pedido, DateTime? dataEntrega}) : dataEntrega = dataEntrega ?? DateTime.now().add(Duration(days: 7));
+  Servico({required this.cliente, required this.pedido, DateTime? dataEntrega,required this.tipoPedido}) : dataEntrega = dataEntrega ?? DateTime.now().add(Duration(days: 7));
 
 
   Servico.fromJson(Map<String, dynamic> json) {
+    tipoPedido = json['tipoPedido'];
     cliente = Cliente.fromJson(json['cliente']);
     DateFormat iso8601Format = DateFormat('yyyy-MM-ddTHH:mm:ss.sssZ');
     dataEntrega = iso8601Format.parse(json['dataEntrega']);
@@ -21,6 +23,7 @@ class Servico {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['tipoPedido'] = this.tipoPedido;
     data['cliente'] = this.cliente.toJson();
     data['dataEntrega'] = this.dataEntrega.toIso8601String();
     data['status'] = this.status;

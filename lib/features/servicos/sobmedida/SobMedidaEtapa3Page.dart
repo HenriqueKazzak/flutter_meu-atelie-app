@@ -6,6 +6,7 @@ import 'package:meu_atelie/models/Servico.dart';
 
 import '../../../models/Cliente.dart';
 import '../../../models/Medida.dart';
+import 'SobMedidaEtapa4Page.dart';
 
 class SobMedidaEtapa3Page extends StatefulWidget {
   final Servico servico;
@@ -42,6 +43,63 @@ class _SobMedidaEtapa3PageState extends State<SobMedidaEtapa3Page> {
     });
   }
 
+  void _editarMedida(int index) {
+    final medida = _medidas[index];
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        TextEditingController _nomeEditController =
+            TextEditingController(text: medida.nome);
+        TextEditingController _comprimentoEditController =
+            TextEditingController(text: medida.comprimento.toString());
+
+        return AlertDialog(
+          title: const Text('Editar Medida'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextFormField(
+                controller: _nomeEditController,
+                decoration: const InputDecoration(
+                  labelText: 'Nome da Medida',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextFormField(
+                controller: _comprimentoEditController,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  labelText: 'Comprimento',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                final nome = _nomeEditController.text;
+                final comprimento =
+                    int.tryParse(_comprimentoEditController.text);
+
+                if (nome.isNotEmpty && comprimento != null) {
+                  setState(() {
+                    medida.nome = nome;
+                    medida.comprimento = comprimento;
+                  });
+                  Navigator.of(context).pop();
+                }
+              },
+              child: const Text('Salvar'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Widget _buildListaMedidas() {
     return ListView.builder(
       shrinkWrap: true,
@@ -51,9 +109,20 @@ class _SobMedidaEtapa3PageState extends State<SobMedidaEtapa3Page> {
         return ListTile(
           title: Text(medida.nome),
           subtitle: Text('Comprimento: ${medida.comprimento}'),
-          trailing: IconButton(
-            icon: Icon(Icons.delete),
-            onPressed: () => _removerMedida(index),
+          trailing: Expanded(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: () => _editarMedida(index),
+                ),
+                IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: () => _removerMedida(index),
+                ),
+              ],
+            ),
           ),
         );
       },
@@ -105,11 +174,19 @@ class _SobMedidaEtapa3PageState extends State<SobMedidaEtapa3Page> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                PedidoSobMedida pedido = widget.servico.pedido as PedidoSobMedida;
+                PedidoSobMedida pedido =
+                    widget.servico.pedido as PedidoSobMedida;
                 pedido.medidas = _medidas;
                 widget.servico.pedido = pedido;
                 log(widget.servico.pedido.toJson().toString());
-                },
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => SobMedidaEtapa4Page(
+                      servico: widget.servico,
+                    ),
+                  ),
+                );
+              },
               child: const Text('Próxima Etapa'),
             ),
           ],

@@ -62,8 +62,7 @@ class _AjusteEtapa2PageState extends State<AjusteEtapa2Page> {
             ElevatedButton(
               onPressed: () {
                 PedidoAjuste p = PedidoAjuste(quantidadePecas: i);
-                Servico servico = Servico(cliente: widget.cliente, pedido: PedidoAjuste(quantidadePecas: i));
-                log("rota");
+                Servico servico = Servico(tipoPedido: "Ajuste", cliente: widget.cliente, pedido: PedidoAjuste(quantidadePecas: i));
                 Navigator.push(
                   context,
                   MaterialPageRoute(
