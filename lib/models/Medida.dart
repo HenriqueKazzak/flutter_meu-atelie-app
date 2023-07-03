@@ -1,8 +1,8 @@
 class Medida {
   String _nome;
-  int _comprimento;
+  double _vrMedida;
 
-  Medida(this._nome, this._comprimento);
+  Medida(this._nome, this._vrMedida);
 
   String get nome => _nome;
 
@@ -10,16 +10,16 @@ class Medida {
     _nome = value;
   }
 
-  int get comprimento => _comprimento;
+  double get vrMedida => _vrMedida;
 
-  set comprimento(int value) {
-    _comprimento = value;
+  set comprimento(double value) {
+    _vrMedida = value;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['nome'] = this.nome;
-    data['comprimento'] = this.comprimento;
+    data['comprimento'] = this.vrMedida;
     return data;
   }
 

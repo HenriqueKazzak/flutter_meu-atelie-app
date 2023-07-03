@@ -26,7 +26,7 @@ class _SobMedidaEtapa3PageState extends State<SobMedidaEtapa3Page> {
 
   void _adicionarMedida() {
     final nome = _nomeController.text;
-    final comprimento = int.tryParse(_comprimentoController.text);
+    final comprimento = double.tryParse(_comprimentoController.text);
 
     if (nome.isNotEmpty && comprimento != null) {
       setState(() {
@@ -52,7 +52,7 @@ class _SobMedidaEtapa3PageState extends State<SobMedidaEtapa3Page> {
         TextEditingController _nomeEditController =
             TextEditingController(text: medida.nome);
         TextEditingController _comprimentoEditController =
-            TextEditingController(text: medida.comprimento.toString());
+            TextEditingController(text: medida.vrMedida.toString());
 
         return AlertDialog(
           title: const Text('Editar Medida'),
@@ -69,9 +69,9 @@ class _SobMedidaEtapa3PageState extends State<SobMedidaEtapa3Page> {
               const SizedBox(height: 10),
               TextFormField(
                 controller: _comprimentoEditController,
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
                 decoration: const InputDecoration(
-                  labelText: 'Comprimento',
+                  labelText: 'Medida',
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -82,7 +82,7 @@ class _SobMedidaEtapa3PageState extends State<SobMedidaEtapa3Page> {
               onPressed: () {
                 final nome = _nomeEditController.text;
                 final comprimento =
-                    int.tryParse(_comprimentoEditController.text);
+                    double.tryParse(_comprimentoEditController.text);
 
                 if (nome.isNotEmpty && comprimento != null) {
                   setState(() {
@@ -108,7 +108,7 @@ class _SobMedidaEtapa3PageState extends State<SobMedidaEtapa3Page> {
         final medida = _medidas[index];
         return ListTile(
           title: Text(medida.nome),
-          subtitle: Text('Comprimento: ${medida.comprimento}'),
+          subtitle: Text('Comprimento: ${medida.vrMedida}'),
           trailing: Expanded(
             child: Row(
               mainAxisSize: MainAxisSize.min,

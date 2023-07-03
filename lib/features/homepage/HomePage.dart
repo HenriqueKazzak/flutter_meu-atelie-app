@@ -241,7 +241,7 @@ class _HomePageState extends State<HomePage> {
                             style: const TextStyle(color: Colors.white)),
                       ),
                       title: Text(
-                        pedido.cliente.nome,
+                        pedido.cliente.nome + ' - ' + pedido.tipoPedido,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
