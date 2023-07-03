@@ -133,7 +133,7 @@ class _SobMedidaEtapa3PageState extends State<SobMedidaEtapa3Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Etapa 3/5 - Medidas'),
+        title: const Text('Etapa 3/4 - Medidas'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),

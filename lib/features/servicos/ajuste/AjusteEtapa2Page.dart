@@ -31,7 +31,7 @@ class _AjusteEtapa2PageState extends State<AjusteEtapa2Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Etapa 2/5 - Selecionar quantidade de peças'),
+        title: const Text('Etapa 2/4 - Selecionar quantidade de peças'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

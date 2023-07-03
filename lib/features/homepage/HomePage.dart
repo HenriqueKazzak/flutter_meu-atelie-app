@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:meu_atelie/models/Costureira.dart';
+import 'package:meu_atelie/models/PedidoAjuste.dart';
+import 'package:meu_atelie/models/PedidoSobMedida.dart';
 import 'package:meu_atelie/models/Servico.dart';
 import 'package:meu_atelie/utils/FirebaseService.dart';
 
@@ -32,8 +34,7 @@ class _HomePageState extends State<HomePage> {
     _ordersStream = _firebaseService.getOrdersStream(10);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
-        _loadMoreOrders(lastDocuments);
+          _scrollController.position.maxScrollExtent) {        _loadMoreOrders(lastDocuments);
       }
     });
   }
@@ -42,6 +43,85 @@ class _HomePageState extends State<HomePage> {
   void dispose() {
     _scrollController.dispose();
     super.dispose();
+  }
+
+  void _editOrder(String orderId) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Editar Pedido'),
+          content: SingleChildScrollView(
+            child: FutureBuilder<DocumentSnapshot>(
+              future: _firebaseService.getOrder(orderId),
+              builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                }
+                if (snapshot.hasError) {
+                  return Text('Erro ao carregar o pedido.');
+                }
+                final pedidoData = snapshot.data!.data();
+                if (pedidoData == null) {
+                  return Text('Pedido não encontrado.');
+                }
+                final pedido = Servico.fromJson(pedidoData as Map<String, dynamic>);
+                if (pedido.pedido is PedidoSobMedida) {
+                  final pedidoSobMedida = pedido.pedido as PedidoSobMedida;
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      TextFormField(
+                        initialValue: pedidoSobMedida.titulo,
+                        decoration: InputDecoration(labelText: 'Título'),
+                      ),
+                      TextFormField(
+                        initialValue: pedidoSobMedida.descricao,
+                        decoration: InputDecoration(labelText: 'Descrição'),
+                      ),
+                      // ... Adicionar outros campos específicos do PedidoSobMedida ...
+                    ],
+                  );
+                }
+                else if(pedido.pedido is PedidoAjuste){
+                  final pedidoAjuste = pedido.pedido as PedidoAjuste;
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      TextFormField(
+                        decoration: InputDecoration(labelText: 'Título'),
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(labelText: 'Descrição'),
+                      ),
+                      // ... Adicionar outros campos específicos do PedidoAjuste ...
+                    ],
+                  );
+                }
+
+                else {
+                  return Text('Tipo de pedido não suportado.');
+                }
+              },
+            ),
+          ),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                // Implementar a lógica para salvar as alterações no pedido
+              },
+              child: Text('Salvar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context); // Fechar o popup sem salvar
+              },
+              child: Text('Cancelar'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void _loadMoreOrders(lastDocuments) async {
@@ -74,11 +154,6 @@ class _HomePageState extends State<HomePage> {
         ),
       );
     }
-  }
-
-  void _editOrder(String orderId) {
-    // Navegar para a tela de edição de pedido, passando o ID do pedido como parâmetro
-    Navigator.pushNamed(context, '/editjob', arguments: orderId);
   }
 
   @override

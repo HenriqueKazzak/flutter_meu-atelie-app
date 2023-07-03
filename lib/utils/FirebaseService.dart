@@ -115,6 +115,10 @@ class FirebaseService {
         .take(10);
   }
 
+  Future<DocumentSnapshot<Map<String, dynamic>>> getOrder(String id){
+    return _firestore.collection('pedidos').doc(id).get();
+  }
+
   deleteOrder(String orderId) {
     _firestore.collection('pedidos').doc(orderId).delete();
   }

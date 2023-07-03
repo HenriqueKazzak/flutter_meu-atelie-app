@@ -43,7 +43,7 @@ class _SobMedidaEtapa1PageState extends State<SobMedidaEtapa1Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Etapa 1/5 - Selecionar cliente'),
+        title: const Text('Etapa 1/4 - Selecionar cliente'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
