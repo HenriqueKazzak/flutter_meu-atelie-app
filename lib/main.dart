@@ -56,7 +56,7 @@ class MeuAtelie extends StatelessWidget {
         '/sobmedida1': (context) => const SobMedidaEtapa1Page(),
         '/ajuste1': (context) => const AjusteEtapa1Page(),
         '/register_costureira': (context) => const CadastrarCostureiraPage(),
-        '/register_cliente': (context) => const CadastrarClientePage()
+        '/novo_cliente': (context) => const CadastrarClientePage()
       },
     );
   }
