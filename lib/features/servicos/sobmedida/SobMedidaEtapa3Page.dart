@@ -70,7 +70,7 @@ class _SobMedidaEtapa3PageState extends State<SobMedidaEtapa3Page> {
               TextFormField(
                 controller: _comprimentoEditController,
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Medida',
                   border: OutlineInputBorder(),
                 ),
@@ -108,7 +108,7 @@ class _SobMedidaEtapa3PageState extends State<SobMedidaEtapa3Page> {
         final medida = _medidas[index];
         return ListTile(
           title: Text(medida.nome),
-          subtitle: Text('Comprimento: ${medida.vrMedida}'),
+          subtitle: Text('Medida: ${medida.vrMedida}'),
           trailing: Expanded(
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -160,7 +160,7 @@ class _SobMedidaEtapa3PageState extends State<SobMedidaEtapa3Page> {
               controller: _comprimentoController,
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
-                labelText: 'Comprimento',
+                labelText: 'Medida',
                 border: OutlineInputBorder(),
               ),
             ),
